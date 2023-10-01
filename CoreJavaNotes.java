@@ -102,3 +102,89 @@ class Example{
     }else{
 
     }
+
+    
+    //TERENARY OPERATOR
+    int num=4;
+    boolean numIsEven=num%2==0 ? true : false;  
+    System.out.println(a );
+
+    //SWITCH STATEMENT
+
+    //here break is important, without break it executes all the remaining statment after a case is matched
+     int day = 10;
+        switch (day) {
+            case 1:
+                System.out.println("Monday");
+                break;
+            case 2:
+                System.out.println("Tuesday");
+                break;
+            case 3:
+                System.out.println("Wednesday");
+                break;
+            case 4:
+                System.out.println("Thursday");
+                break;
+            case 5:
+                System.out.println("Friday");
+                break;
+            case 6:
+                System.out.println("Saturday");
+                break;
+            case 7:
+                System.out.println("Sunday");
+                break;
+
+            default:
+                System.out.println("Enter a valid day");
+                break;
+        }
+
+        //With recent versions of java we can actually avoid using break, there is a different syntax for that
+
+        /*LOOPS */
+
+        //for Loop
+        
+        for (int i = 0; i < 5; i++) {
+            System.out.println("Hi " + i);
+        }
+    
+        //while Loop
+
+        int i = 1;  //initialization
+        while (i < 6) { //condition
+            System.out.println("Hi "+i);
+            i++;    //increment or decrement
+        }
+
+        //do while loop
+
+        //if we want to execute the block atleast once even the condition is false
+        int i = 7;
+        do {
+            System.out.println("Hi " + i);
+            i++;
+        } while (i < 6);
+
+
+        /*OBJECT ORIENTED PROGRAMMING */
+
+        //Every object has properties(data) and behaviour(methods)
+
+        //To create object we need a class(blue print of object).
+        //Using the byte in class file JVM creates the object.
+        
+        class Demo {
+        public static void main(String args[]) {
+
+            int num1=7;
+            int num2=4;
+
+            int result = num1+num2; //here adding two nums is a behaviour of a calculator, lets create a calculator class
+            System.out.println(result);
+
+        }
+
+    }
