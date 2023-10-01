@@ -174,7 +174,7 @@ class Example{
         //Every object has properties(data) and behaviour(methods)
 
         //To create object we need a class(blue print of object).
-        //Using the byte in class file JVM creates the object.
+        //Using the byte code in class file JVM creates the object.
         
         class Demo {
         public static void main(String args[]) {
