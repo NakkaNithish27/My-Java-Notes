@@ -188,3 +188,63 @@ class Example{
         }
 
     }
+
+    // CREATING A CALCULATOR CLASS
+
+    class Calculator {
+        int a;
+        public int add(int n1, int n2) {
+            return n1 + n2;
+        }
+
+    }
+
+    class Demo {
+        public static void main(String args[]) {
+
+            int num1 = 9;
+            int num2 = 9;
+
+            // here calc is reference variable
+            // Calculator() is the constructor method
+            Calculator calc = new Calculator();
+            int result = calc.add(num1, num2);
+            System.out.println(result);
+
+        }
+
+    }
+
+    //BEHIND THE SCENES
+
+    //JRE provides inbuilt libraries for our code to run
+    //JVM is a part of JRE
+    //JRE is a part of JDK
+
+    /*METHOD OVERLOADING */
+
+        
+    class Calculator {
+        public int add(int num1, int num2, int num3) {
+            return num1 + num2 + num3;
+        }
+
+        public int add(int num1, int num2) {
+            return num1 + num2;
+        }
+
+        public double add(double num1, double num2) {
+            return num1 + num2;
+        }
+    }
+
+    class Demo {
+        public static void main(String args[]) {
+            Calculator calc = new Calculator();
+            System.out.println(calc.add(2, 4, 5));
+            System.out.println(calc.add(4, 6));
+            System.out.println(calc.add(4.6, 46.6));
+
+        }
+
+    }

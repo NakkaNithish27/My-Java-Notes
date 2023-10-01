@@ -1,20 +1,24 @@
 
- class Calculator {
-    public int add(int n1,int n2){
-        return n1+n2;
+class Calculator {
+    public int add(int num1, int num2, int num3) {
+        return num1 + num2 + num3;
     }
-    
+
+    public int add(int num1, int num2) {
+        return num1 + num2;
+    }
+
+    public double add(double num1, double num2) {
+        return num1 + num2;
+    }
 }
 
 class Demo {
     public static void main(String args[]) {
-
-        int num1=7;
-        int num2=9;
-
         Calculator calc = new Calculator();
-        int result = calc.add(num1,num2);
-        System.out.println(result);
+        System.out.println(calc.add(2, 4, 5));
+        System.out.println(calc.add(4, 6));
+        System.out.println(calc.add(4.6, 46.6));
 
     }
 
