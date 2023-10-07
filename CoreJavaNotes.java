@@ -248,3 +248,66 @@ class Example{
         }
 
     }
+
+    //HOW MEMORY ALLOCATES INSIDE THE JVM?
+
+    
+    class Calculator {
+        int a;  //instance variable
+        public int add(int num1, int num2) { //num1,num2 are local variables
+            return num1 + num2;      //We will have add stack
+        }
+
+    }
+
+    class Demo {
+        public static void main(String args[]) { //we will have main stack
+            Calculator calc = new Calculator();
+            System.out.println(calc.add(4, 6));
+
+        }
+
+    }
+
+    //Every method has its own stack iside jvm to store all local variables of that method
+    //We will have heap memory to store all the objects
+    //The objects inside heap memory contains instance variables, and method definations
+    
+
+    /*  ARRAY */
+
+    // One Dimensional Array
+
+    int arr1[] = { 4, 6, 3, 6 }; // if you have the values
+    int arr2[] = new int[5]; // without values, here 5 is array size
+
+    for(int i = 0;i<arr1.length;i++){
+            
+        System.out.println(arr1[i]);
+
+        }
+
+    //  Two dimensional Array
+    
+    class Demo {
+        public static void main(String args[]) {
+            int nums[][] = new int[3][4]; 
+
+            for (int i = 0; i < nums.length; i++) {
+                for (int j = 0; j < nums[i].length; j++) {
+                    nums[i][j] = (int) (Math.random() * 10);
+                }
+            }
+
+            for (int i = 0; i < nums.length; i++) {
+                for (int j = 0; j < nums[i].length; j++) {
+                    System.out.print(nums[i][j] + " ");
+                }
+                System.out.println();
+            }
+
+        }
+    }
+
+    // Enhanced for loop
+
