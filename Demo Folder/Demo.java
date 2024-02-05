@@ -1,20 +1,25 @@
 
+class Mobile {
+    String brand;
+    int price;
+    static String type;
+
+    public void show() {
+        System.out.println(brand + ":" + price + ":" + type);
+    }
+
+}
+
 class Demo {
     public static void main(String args[]) {
-        int nums[][] = new int[3][4];
-
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < nums[i].length; j++) {
-                nums[i][j] = (int) (Math.random() * 10);
-            }
-        }
-
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < nums[i].length; j++) {
-                System.out.print(nums[i][j] + " ");
-            }
-            System.out.println();
-        }
-
+        Mobile m1 = new Mobile();
+        Mobile m2 = new Mobile();
+        Mobile.type = "Smart Phone";
+        m1.brand = "apple";
+        m2.brand = "samsung";
+        m1.price = 15000;
+        m2.price = 10000;
+        m1.show();
+        m2.show();
     }
 }

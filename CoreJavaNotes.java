@@ -310,4 +310,80 @@ class Example{
     }
 
     // Enhanced for loop
+    class Demo{
+        public static void main(String args[]){
+         int arr[]=new int[4];
+         arr[0]=6;
+         arr[1]=7;
+         arr[2]=8;
+         arr[3]=2;
+     
+         for(int num:arr){ 
+             System.out.println(num);
+         }
+        }
+     }  
+
+     //String
+
+     //String constant pool
+     //unreferenced string objects in string constant pool will be garbage collected to get the memory back
+     
+     class Demo{
+        public static void main(String args[]){
+         String name= "Nithish";  
+         String surName=new String("Nakka");
+         System.out.println(surName+name);
+         String s1="Phani";
+         String s2="Phani";
+         System.out.println(s1.hashCode()+ " " + s2.hashCode()); //both hashcodes are same
+     }  
+
+     //Mutable String - can be changed (we can make mutable strings using StringBuffer, StrigBuilder classes)
+     //Immutable Strings - unchange  (by default strings are immutable in java)
+
+     //StringBuffer - it is thread safe
+     //StringBuilder- it is not thread safe
+     class Demo{
+        public static void main(String args[]){
+         StringBuffer name= new StringBuffer();
+         System.out.println(name.capacity()); // bydefault gives 16 characters
+         //when we assign a string to name, the capacity becomes length of string+16
+         //To reduce the relocation of the string, it gives 16 characters buffer
+         System.out.println(name.length());
+         name.setLength(30); //
+         System.out.println(name.length());
+     }  
+     }
+
+     
+     //static keyword
+
+     // a static variable (class variable) will be shared by all the objects of the class
+     //in non static methods we can use static variables
+     
+    class Mobile {
+        String brand;
+        int price;
+        static String type;
+
+        public void show() {
+            System.out.println(brand + ":" + price + ":" + type);
+        }
+
+    }
+
+    class Demo {
+        public static void main(String args[]) {
+            Mobile m1 = new Mobile();
+            Mobile m2 = new Mobile();
+            Mobile.type = "Smart Phone";  //If you want to access a static variable, you should use a class name
+            m1.brand = "apple";
+            m2.brand = "samsung";
+            m1.price = 15000;
+            m2.price = 10000;
+            m1.show();
+            m2.show();
+        }
+    }
 
