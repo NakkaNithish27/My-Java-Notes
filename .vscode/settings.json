@@ -1,5 +1,7 @@
 {
     "java.project.sourcePaths": [
         ""
-    ]
+    ],
+    "a-file-icon-vscode.folderTheme": "classic",
+    "a-file-icon-vscode.arrowTheme": "material"
 }
