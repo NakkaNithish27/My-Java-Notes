@@ -1,28 +1,28 @@
-class Human {
+class A extends Object { //In java every class extends the Object class
+  public A() {
+    super();
+    System.out.println("In A");
+  }
+  public A(int n) {
+    super();
+    System.out.println("In A int");
+  }
+}
 
-  private int age;  //Whenever you create an instance vairable, make it private
-  private String name; //private variables can only be accessed from the same class only
-  public int getAge() {
-    return age;
+class B extends A {
+  public B() {
+    super(); //it's there but we can't see it
+    System.out.println("In B");
   }
-  public String getName() {
-    return name;
+  public B(int n) {
+    super(); //super(5), if we want to call parameterized consturctor of super class
+    System.out.println("In B int");
   }
-  public void setAge(int age, Human ob) {
-    ob.age = age;
-  }
-  public void setName(String name) {
-    this.name = name;
-  }
-
 }
 
 class Demo {
   public static void main(String args[]) {
-    Human obj = new Human();
-    obj.setAge(21, obj);
-    obj.setName("Nithish");
-    System.out.println(obj.getName() + ":" + obj.getAge());
+    B obj = new B();
 
   }
 }
