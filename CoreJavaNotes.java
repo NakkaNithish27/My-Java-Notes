@@ -452,6 +452,8 @@ class Demo {
     /*If one can have the object, he can access the data inside the object */
     /*One should not have the direct access to the object variables directly, it's like reading our mind without our consent */
     /*So to prevent this, always make instance variables private, and they can only be accessing via the setters and getters only which are public*/
+
+    //this keyword
     class Human {
 
         private int age;  //Whenever you create an instance vairable, make it private
@@ -468,7 +470,7 @@ class Demo {
         // }  instead of doing this, java gives us this keyword
 
         public void setAge(int age) {
-            this.age = age;//this keyword is the reference of the object which is calling the setAge method
+            this.age = age; //this keyword is the reference of the object which is calling the setAge method
         }
         public void setName(String name) {
             this.name = name;
@@ -485,6 +487,91 @@ class Demo {
 
         }
     }
+
+    //Every method has his own stack in the memory
+    /*all objects are stored in the heap memory*/
+
+    //CONSTRUCTERS
+
+    /*constructer is a special method which have the same name as class name,
+    using constucter we can assign default values to the variables*/
+    /*constructer don't have return type*/
+    /*Whenever you perform a operation like assignment, always do it inside a method, don't do it directly*/
+    /*When we want to connect our application to a network/database, we will write the connections in constructer*/
+
+    class Human {
+
+        private int age;
+        private String name;
+        public Human() { //normal constructer or default constructer
+            age = 21;
+            name = "Nakka";
+        }
+
+        //Constructer overloading
+        public Human(int age, String name) { //parameterized constructer
+            this.age = age;
+            this.name = name;
+        }
+        public String getName() {
+            return name;
+        }
+        public int getAge() {
+            return age;
+        }
+
+
+    }
+
+    class Demo {
+        public static void main(String args[]) {
+
+
+            Human obj = new Human();
+            Human obj1 = new Human(20, "john");
+
+            System.out.println(obj.getName() + ":" + obj.getAge());
+            System.out.println(obj1.getName() + ":" + obj1.getAge());
+
+        }
+    }
+
+    /*this and super*/
+
+    /*In every consturctor the first line is super()*/
+    /*this() method executes the constructor of the same class*/
+    /*super() method executes the sonstuctor of the super class*/
+
+    class A extends Object { //In java every class extends the Object class
+        public A() {
+            super();
+            System.out.println("In A");
+        }
+        public A(int n) {
+            super();
+            System.out.println("In A int");
+        }
+    }
+
+    class B extends A {
+        public B() {
+            super(); //it's there but we can't see it
+            System.out.println("In B");
+        }
+        public B(int n) {
+            super(); //super(5), if we want to call parameterized consturctor of super class
+            System.out.println("In B int");
+        }
+    }
+
+    class Demo {
+        public static void main(String args[]) {
+            B obj = new B();
+        }
+    }
+
+
+
 
 
 
