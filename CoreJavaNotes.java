@@ -410,7 +410,94 @@ class Demo {
         }
     }
 
-    /*We cannot use a non static variable inside a static method directly, as JVM don't know which obeect variable you
-    trying to access*/
+    /*We cannot use a non static variable inside a static method directly, as JVM don't know which object variable you
+    trying to access, but we can use indirectly by passing the object reference*/
+
+    class Mobile {
+        String brand;
+        int price;
+        static String type;
+
+        static {
+            type = "Smart Phone";
+            System.out.println("in Static Block");
+        }
+
+        public static void show(Mobile m1) {
+            System.out.println(m1.brand + ":" + m1.price + ":" + m1.type);
+        }
+
+    }
+
+    class Demo {
+        public static void main(String args[]) throws ClassNotFoundException {
+
+            Class.forName("Mobile");
+
+            Mobile m1 = new Mobile();
+            Mobile.type = "Smart Phone";  //If you want to access a static variable, you should use a class name
+            m1.brand = "apple";
+            m1.price = 15000;
+            Mobile.show(m1);
+        }
+    }
+
+    /*Why main method is static*/
+    /*as main is the starting point of the code, we cannot create an object to access main method, to avoid dead lock situation
+    the main method need to be static method*/
+
+
+    //ENCAPSULATION
+
+    /*If one can have the object, he can access the data inside the object */
+    /*One should not have the direct access to the object variables directly, it's like reading our mind without our consent */
+    /*So to prevent this, always make instance variables private, and they can only be accessing via the setters and getters only which are public*/
+    class Human {
+
+        private int age;  //Whenever you create an instance vairable, make it private
+        private String name; //private variables can only be accessed from the same class only
+        public int getAge() {
+            return age;
+        }
+        public String getName() {
+            return name;
+        }
+        // public void setAge(int age, Human ob) {
+        //     Human objl = ob;
+        //     obj1.age = age;
+        // }  instead of doing this, java gives us this keyword
+
+        public void setAge(int age) {
+            this.age = age;//this keyword is the reference of the object which is calling the setAge method
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+
+    }
+
+    class Demo {
+        public static void main(String args[]) {
+            Human obj = new Human();
+            obj.setAge(21); //    obj.setAge(21, obj);
+            obj.setName("Nithish");
+            System.out.println(obj.getName() + ":" + obj.getAge());
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
