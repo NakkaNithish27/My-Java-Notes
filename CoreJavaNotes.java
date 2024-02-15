@@ -570,6 +570,84 @@ class Demo {
         }
     }
 
+    /*Namining Conventions in Java*/
+
+    //Camel Casing
+
+    /*class and interface- Calc, Runnable*/
+    /*variable and method - marks, show()*/
+    /*constants - PIE, BRAND*/
+
+
+    //Anonymous Object
+
+    /*Unreferenced objects are called anonymous objects, and they can only be used once
+    because if we want to use it again, it will create another new object
+    */
+    new A().show();
+
+    //INHERITANCE
+    /*is, has*/
+    /*ex: Laptop has ram, cpu*/
+    /*ex: Laptop is computer*/
+    /*Parent class or Base class or Super class*/
+    /*Child class or sub class or derived class*/
+    /*For inheritance just class file is enough, no need to have the java file*/
+    /*In java we can have multi level inheritance*/
+    /*In java we dont have multiple inheritance because of ambiguity problem(if both parent
+    has the same method lets say show(), jvm don't know which method we are calling)*/
+
+    public class Calc {
+        public int add(int a, int b) {
+            return a + b;
+        }
+        public int sub(int a, int b) {
+            return a - b;
+        }
+    }
+    public class AdvCalc extends Calc {
+        public int mul(int a, int b) {
+            return a * b;
+        }
+        public int  div(int a, int b) {
+            return a / b;
+        }
+    }
+    public class Demo {
+        public static void main(String[] args) {
+            AdvCalc obj = new AdvCalc();
+            int r1 = obj.add(4, 2);
+            int r2 = obj.sub(4, 2);
+            System.out.println(r1 + " " + r2 );
+        }
+    }
+
+    //METHOD OVERRIDING
+    /*If both child and parent class has the methods with same name, child class mehod
+    overrides the parent class method*/
+
+    //PACKAGES
+
+    /*A package is nothing but a folder*/
+    /*If we want to use classes that are in different package/folder, we nee to import them*/
+    /*By defauld in java, in every file we have*/
+    //import java.lang.*;
+    /*After creating a package, we will host it in server for everyone in the internect can use it
+    for that we have to make it unique, for that we can simply reverse our website domain name*/
+    /*package com.google.calculation*/
+
+    import others.*; //this only imports all the files in others, it wont import folders in others
+
+    //ACCESS MODIFIERS
+
+
+
+
+
+
+
+
+
 
 
 
