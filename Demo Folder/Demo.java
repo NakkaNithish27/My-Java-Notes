@@ -1,9 +1,17 @@
 
+class A {
+	public void show() {
+		System.out.println("In A show");
+	}
+
+}
 public class Demo {
 	public static void main(String[] args) {
-		AdvCalc obj = new AdvCalc();
-		int r1 = obj.add(4, 2);
-		int r2 = obj.sub(4, 2);
-		System.out.println(r1 + " " + r2 );
+		A obj = new A() {  //A$1.class file will be created
+			public void show() {
+				System.out.println("In new show");
+			}
+		};
+		obj.show();
 	}
 }

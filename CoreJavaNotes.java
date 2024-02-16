@@ -630,9 +630,9 @@ class Demo {
 
     /*A package is nothing but a folder*/
     /*If we want to use classes that are in different package/folder, we nee to import them*/
-    /*By defauld in java, in every file we have*/
+    /*By default in java, in every file we have*/
     //import java.lang.*;
-    /*After creating a package, we will host it in server for everyone in the internect can use it
+    /*After creating a package, we will host it in server for everyone in the internet can use it
     for that we have to make it unique, for that we can simply reverse our website domain name*/
     /*package com.google.calculation*/
 
@@ -640,7 +640,208 @@ class Demo {
 
     //ACCESS MODIFIERS
 
+    /*public, private, protected, default*/
+    /*If you want somting to be accessed outside of the package, it should be public*/
+    /*private variables can only be used inside the same class, we can't use even if private
+    variable is in the same class */
+    /*default means, can be use inside the same package*/
+    /*protected variables acts like public only as long as they are in same package, in
+    different package we must extend the class inorder to use the protected variables*/
+    /*make classes public, instance variables private, we can have only one public class inside
+    a file*/
 
+    //POLYMORPHISM
+
+    /*Same object have Many behaviours*/
+    /*Two types,
+    1)Compiletime polymorphism- early binding,
+    2)Runtime polymorphism - late binding*/
+
+    /*compile time
+    -  we know whant thing will be executed at compile time itself
+    Happens in method overloading*/
+    /*run time-   we know which method will be executed at run time only
+    Happens in method overriding*/
+
+    /*Run time polymorphism using dynamic method dispatch*/
+
+    //We can use parent reference variable and object of child class
+    class A {
+        public void show() {
+            System.out.println("In A show");
+        }
+    }
+    class B extends A {
+        public void show() {
+            System.out.println("In B show");
+        }
+    }
+
+
+    public class Demo {
+        public static void main(String[] args) {
+            A obj = new A();
+            obj.show();
+            obj = new B();
+            obj.show();  //same obj behaving differently
+        }
+    }
+
+    /*final keyword*/
+
+    final num = 10;// making constants with final, this value cannot be changed later
+    /*final classes cannot be extended*/
+    /*We can prevent method overriding by making it final*/
+
+    /*Object class*/
+
+    /*Every object in java extends Object class*/
+
+
+    class Laptop {
+        String name = "Lenovo";
+        int price = 10000;
+        @Override
+        public String toString() {
+            // TODO Auto-generated method stub
+            return this.name + ":" + this.price;
+        }
+        @Override
+        public boolean equals(Object that) {
+            Laptop lap = (Laptop)that;
+            // TODO Auto-generated method stub
+            return this.name.equals(lap.name) && this.price ==  lap.price;
+        }
+    }
+
+
+    public class Demo {
+        public static void main(String[] args) {
+            Laptop obj1 = new Laptop();
+            Laptop obj2 = new Laptop();
+
+            System.out.println(obj1); //here it calls obj1.toString()
+            System.out.println(obj1.equals(obj2));
+
+        }
+    }
+
+    /*Type casting*/
+    //Downcasting
+    //Upcasting
+
+    public class Demo {
+        public static void main(String[] args) {
+            double num = 4.5;
+            int i = (int)num;//Downcasting
+
+            System.out.println(i);
+
+        }
+    }
+
+    /*Type casting in OOPS*/
+
+    class A {
+        public void show1() {
+            System.out.println("In A show");
+        }
+    }
+
+
+    class B extends A {
+        public void show2() {
+            System.out.println("In B show");
+        }
+    }
+    public class Demo {
+        public static void main(String[] args) {
+            A obj = new B(); //Upcasting
+            obj.show1();
+            B obj1 = (B) obj; //Downcasting
+            obj1.show2();
+
+        }
+    }
+
+    /*abstract keyword in java*/
+    /*If you don't know how to define a method, you can simply delcare it as an absrtact method,
+    We can have abstract method only in abstract class
+    We cannot create  object of abstract class
+    we can only create object of concrete class*/
+
+
+    abstract class Car {  //Abstract class
+        public abstract void drive();
+        public void playMusic() {
+            System.out.println("Playing Music...");
+        }
+    }
+    class WagonR extends Car { //Concrete class
+        public void drive() {
+            System.out.println("Driving...");
+        }
+    }
+
+
+    public class Demo {
+        public static void main(String[] args) {
+            WagonR obj = new WagonR();
+            obj.drive();
+            obj.playMusic();
+        }
+    }
+
+    /*Inner Class*/
+
+    class A {
+        int name = "Nithish";
+        public void show() {
+            System.out.println("In A show");
+        }
+        class B {  //A$B.class file will be created
+            public void config() {
+                System.out.println("In B config");
+            }
+        }
+        /*static class B {
+            public void config() {
+                System.out.println("In B config");
+            }
+        }*/
+
+    }
+    public class Demo {
+        public static void main(String[] args) {
+            A obj = new A();
+            A.B obj1 = obj.new B(); //as B class is not static, we need object of A to create object of B class
+            //A.B obj1=new A.B() if B is static class
+        }
+    }
+    /*We can only use static for inner class, not for outer class*/
+
+    /*Anonymous Inner class*/
+
+    /*If we want to extend a class just to override a method, instead of creating a new
+    class, we can use anonymous inner class*/
+
+
+    class A {
+        public void show() {
+            System.out.println("In A show");
+        }
+
+    }
+    public class Demo {
+        public static void main(String[] args) {
+            A obj = new A() {  //Anonymous Inner class, A$1.class file will be created
+                public void show() {
+                    System.out.println("In new show");
+                }
+            };
+            obj.show();
+        }
+    }
 
 
 
