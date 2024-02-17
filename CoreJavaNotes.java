@@ -443,6 +443,7 @@ class Demo {
     }
 
     /*Why main method is static*/
+
     /*as main is the starting point of the code, we cannot create an object to access main method, to avoid dead lock situation
     the main method need to be static method*/
 
@@ -450,7 +451,9 @@ class Demo {
     //ENCAPSULATION
 
     /*If one can have the object, he can access the data inside the object */
+
     /*One should not have the direct access to the object variables directly, it's like reading our mind without our consent */
+
     /*So to prevent this, always make instance variables private, and they can only be accessing via the setters and getters only which are public*/
 
     //this keyword
@@ -495,8 +498,11 @@ class Demo {
 
     /*constructer is a special method which have the same name as class name,
     using constucter we can assign default values to the variables*/
+
     /*constructer don't have return type*/
+
     /*Whenever you perform a operation like assignment, always do it inside a method, don't do it directly*/
+
     /*When we want to connect our application to a network/database, we will write the connections in constructer*/
 
     class Human {
@@ -539,7 +545,9 @@ class Demo {
     /*this and super*/
 
     /*In every consturctor the first line is super()*/
+
     /*this() method executes the constructor of the same class*/
+
     /*super() method executes the sonstuctor of the super class*/
 
     class A extends Object { //In java every class extends the Object class
@@ -590,10 +598,15 @@ class Demo {
     /*is, has*/
     /*ex: Laptop has ram, cpu*/
     /*ex: Laptop is computer*/
+
     /*Parent class or Base class or Super class*/
+
     /*Child class or sub class or derived class*/
+
     /*For inheritance just class file is enough, no need to have the java file*/
+
     /*In java we can have multi level inheritance*/
+
     /*In java we dont have multiple inheritance because of ambiguity problem(if both parent
     has the same method lets say show(), jvm don't know which method we are calling)*/
 
@@ -629,9 +642,12 @@ class Demo {
     //PACKAGES
 
     /*A package is nothing but a folder*/
+
     /*If we want to use classes that are in different package/folder, we nee to import them*/
+
     /*By default in java, in every file we have*/
     //import java.lang.*;
+
     /*After creating a package, we will host it in server for everyone in the internet can use it
     for that we have to make it unique, for that we can simply reverse our website domain name*/
     /*package com.google.calculation*/
@@ -641,12 +657,17 @@ class Demo {
     //ACCESS MODIFIERS
 
     /*public, private, protected, default*/
+
     /*If you want somting to be accessed outside of the package, it should be public*/
+
     /*private variables can only be used inside the same class, we can't use even if private
     variable is in the same class */
+
     /*default means, can be use inside the same package*/
+
     /*protected variables acts like public only as long as they are in same package, in
     different package we must extend the class inorder to use the protected variables*/
+
     /*make classes public, instance variables private, we can have only one public class inside
     a file*/
 
@@ -766,8 +787,11 @@ class Demo {
 
     /*abstract keyword in java*/
     /*If you don't know how to define a method, you can simply delcare it as an absrtact method,
+
     We can have abstract method only in abstract class
+
     We cannot create  object of abstract class
+
     we can only create object of concrete class*/
 
 
@@ -843,11 +867,291 @@ class Demo {
         }
     }
 
+    /*Using anonymous inner class with abstact class*/
+
+    abstract class A {
+        abstract public void show();
+
+    }
+    public class Demo {
+        public static void main(String[] args) {
+            A obj = new A() { //implementing absract clas methods using anonymous class
+                public void show() {
+                    System.out.println("In new show");
+                }
+            };
+            obj.show();
+        }
+    }
+
+    /*interface*/
+    /*In abstract class we can have abstract methods and normal methods
+
+    When we have an abstract class with only abstract methods, the other alternative for
+    that is to create an interface
+
+    First of all, interface is not a class
+
+    By default every method in interface is public abstract, so we don't have to mention it
+
+    By default every variable in interface is final static, since it is final we need to initialize variables in the interface itseld
+
+    We use interface to design a class
+
+    interface variables are final static because what be instatiate is the class that implements the
+    interface and that too we can get to implement the methods, not the variables,so the interface
+    can't have the heap memory
+
+    */
+
+    //class -  class -> extends
+    //class - interface -> implements
+    //interface -  interface ->extends
+
+
+    interface A {
+        String name = "Nithish"; // by default final,static
+        int age = 21;
+        void show(); //by default all methods are public abstract
+
+    }
+
+    interface B {
+        void config();
+    }
+
+    interface D extends B { //one interface can extend another interface
+
+    }
+    class C implements A, D { //one class can implements multiple interfaces
+        public void show() {
+            System.out.println("showing...");
+        }
+        public void config() {
+            System.out.println("In config...");
+        }
+    }
+    public class Demo {
+        public static void main(String[] args) {
+            A obj = new C();  //Here we we can only call show(), as the reference is of A
+            obj.show();
+            obj.config();
+            System.out.println(A.name);
+        }
+    }
+
+    /*What is the need for the interface*/
+    /*In this example we are generalising things using interface, the deleloper cannot say he
+    can only code in laptop only or desktop only
+    */
+
+    interface Computer {
+        void code();
+    }
+    class Laptop implements Computer {
+        public void code() {
+            System.out.println("code, compile, run");
+        }
+    }
+    class Desktop implements  Computer {
+        public void code() {
+            System.out.println("code, compile, run: faster");
+        }
+    }
+
+    class Developer {
+        public void devApp(Computer obj) {
+            obj.code();
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            Computer comp = new Desktop();
+            Developer Nithish = new Developer();
+
+            Nithish.devApp(comp);
+        }
+    }
+
+    /*enumeration (enums)*/
+
+    /*enums are named constants ex: error codes*/
+
+    /*enum is a class, but we cannot extend another class, apart from that we can define methods,
+    constructors, and create variables inside variables*/
+
+    /*If enum cannot extend another class, then how we are getting all the methods like ordinal(), values() etc*/
+
+    /*enum in java extends Enum class, and we are getting all the methods from Enum class
+    */
+
+    enum Status {
+        Running, Failed, Pending, Success  //these are like default constuctors
+    }
+    class Demo {
+        public static void main(String[] args) {
+            int i = 5;
+            Status s = Status.Success;
+            System.out.println(s);
+            System.out.println(s.ordinal());
+            Status statusArray[] = Status.values();
+            for (Status stat : statusArray) {
+                System.out.println(stat + ":" + stat.ordinal());
+            }
+        }
+    }
 
 
 
 
+    /*Comparing enums*/
 
+    enum Status {
+        Running, Failed, Pending, Success
+    }
+    class Demo {
+        public static void main(String[] args) {
+
+            Status s = Status.Success;
+
+
+            switch (s) {
+            case Running:
+                System.out.println("All good");
+                break;
+            case Failed:
+                System.out.println("Try again");
+                break;
+            case Pending:
+                System.out.println("Please wait");
+                break;
+            default:
+                System.out.println("Done");
+                break;
+
+            }
+            // if (s == Status.Running) {
+            //  System.out.println("All good");
+            // } else if (s == Status.Failed) {
+            //  System.out.println("Try again");
+            // } else if (s == Status.Pending) {
+            //  System.out.println("Please wait");
+            // } else {
+            //  System.out.println("Done");
+            // }
+
+        }
+    }
+
+    /*Giving values to the constants*/
+
+    enum Laptops {
+        Macbook(1000), Xps(800), Surface, Thinkpad(400); //these are like four objects inside same class
+        private int price;
+        private Laptops() {
+            this.price = 500;
+        }
+        private Laptops(int price) {
+            this.price = price;
+
+        }
+        public void setPrice(int price) {
+            this.price = price;
+        }
+        public int getPrice() {
+            return price;
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            Laptops obj = Laptops.Surface;
+            System.out.println(obj);
+            for ( Laptops lap : Laptops.values()) {
+                System.out.println(lap + ":" + lap.getPrice());
+            }
+
+        }
+    }
+
+
+    /*Annotations*/
+    /*Annotations simply means a supplement to the compiler/runtime
+
+    We also call annotations as a meta data
+
+    Sometime we want to say something to the compiler */
+
+    class A {
+        public void show() {
+            System.out.println("In A show");
+        }
+    }
+    class B extends A {
+        @Override
+        public void show() {  //Here if we write the spelling of show wrong, the compiler give us error
+            System.out.println("In B show");
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            B obj = new B();
+            obj.show();
+
+        }
+    }
+
+    /*Functional interface or Single Abstract Method Interface(SAM)*/
+
+    /*For functional interface we can reduce the code using lamda expression while creating anonymous class*/
+
+
+
+
+    @FunctionalInterface
+    interface A {
+        public void show(int x);
+    }
+
+
+    class Demo {
+        public static void main(String[] args) {
+            A obj = x->
+                    System.out.println("In A show" + ":" + x);
+
+            // A obj = new A() {
+            //  public void show() {
+            //      System.out.println("In A show");
+            //  }
+            // };
+            obj.show(5);
+        }
+
+    }
+
+    /*If the method has only one statement and that too return statement, we don't have to use return
+    keyword in lamda expression*/
+
+
+    @FunctionalInterface
+    interface A {
+        public int show(int x, int y);
+    }
+
+
+    class Demo {
+        public static void main(String[] args) {
+            A obj = (x, y) -> x + y;
+
+
+            // A obj = new A() {
+            //  public int show(int x, int y) {
+            //      return x + y;
+            //  }
+            // };
+            obj.show(5, 6);
+        }
+
+    }
 
 
 

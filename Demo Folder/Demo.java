@@ -1,17 +1,20 @@
-
-class A {
-	public void show() {
-		System.out.println("In A show");
-	}
-
+@FunctionalInterface
+interface A {
+	public int show(int x, int y);
 }
-public class Demo {
+
+
+class Demo {
 	public static void main(String[] args) {
-		A obj = new A() {  //A$1.class file will be created
-			public void show() {
-				System.out.println("In new show");
-			}
-		};
-		obj.show();
+		A obj = (x, y) -> x + y;
+
+
+		// A obj = new A() {
+		// 	public int show(int x, int y) {
+		// 		return x + y;
+		// 	}
+		// };
+		obj.show(5, 6);
 	}
+
 }
