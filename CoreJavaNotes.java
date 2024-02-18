@@ -1328,11 +1328,199 @@ class Demo {
         }
     }
 
+    /*Taking input using Scanner*/
+
+    //import java.util.Scanner;
+
+    class Demo {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            int num = sc.nextInt();
+            System.out.println(num);
+            sc.close();
+        }
+    }
+
+    /*Using try with finally*/
+
+    /*we can use try with finally, without catch block*/
+
+    // import java.io.BufferedReader;
+    // import java.io.IOException;
+    // import java.io.InputStreamReader;
+
+    class Demo {
+        public static void main(String[] args) throws IOException {
+            int num;
+
+            BufferedReader br = null;
+            try {
+                br = new BufferedReader(new InputStreamReader(System.in));
+                num = Integer.parseInt(br.readLine());
+                System.out.println(num);
+            } finally {
+                br.close(); //closing the resourse manually
+            }
+        }
+    }
+
+    /*We can also close the resourse without using finally block*/
+
+    // import java.io.BufferedReader;
+    // import java.io.IOException;
+    // import java.io.InputStreamReader;
+
+    class Demo {
+        public static void main(String[] args) throws IOException {
+            int num;
+            //initialize the resourse that you want to close automatically
+            try(BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+
+                num = Integer.parseInt(br.readLine());
+                System.out.println(num);
+            }
+        }
+    }
+
+    /*Threads*/
 
 
+    class A extends Thread {
+        public void run() {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("hi");
+                try {
+                    Thread.sleep(10);   //trying to optimise the threads
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    class B extends Thread {
+        public void run() {
+            for (int i = 0; i < 10; i++)
+                System.out.println("hello");
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            A obj1 = new A(); //obj1 and obj2 are two threads
+            B obj2 = new B();
+            /*suggesting the schedular about the thread priority*/
+            obj2.setPriority(Thread.MAX_PRIORITY);
+            obj1.start();
+            try {
+                Thread.sleep(5);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            obj2.start();
+            //Using thread priority we can tell the schedular
+            System.out.println(obj1.getPriority());
+            //1 is the least priority
+            //5 is the normal priority
+            //10 is the highest priority
+
+        }
+    }
+
+    /*This idea of extending Thread class is not a good idea, as won't be able to extend any
+    other class*/
+
+    /*We can implement a Runnable interface, the Runnable interface will not have Thread methods
+    we need to create thread objects also*/
+
+    /*As Runnable is a functional interface, we can further reduce this code using lamda expression*/
+
+    class A implements Runnable {
+        public void run() {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("hi");
+                try {
+                    Thread.sleep(10);   //trying to optimise the threads
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    class B implements Runnable {
+        public void run() {
+            for (int i = 0; i < 10; i++) {
+                System.out.println("hello");
+                try {
+                    Thread.sleep(10);   //trying to optimise the threads
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            Runnable obj1 = new A();
+            Runnable obj2 = new B();
+            Thread t1 = new Thread(obj1);
+            Thread t2 = new Thread(obj2);
+            t1.start();
+            t2.start();
+
+        }
+    }
 
 
+    /*Race condition*/
 
+    /*Thread safe-  only one thread can access/change the variable at one time*/
+
+    /*We can prevent race condition by using the keyword synchronized*/
+
+
+    class Count {
+        int counter;
+        public synchronized void increment() { //only one thread can call this method at one time
+            counter++;
+        }
+    }
+
+    class Demo {
+        public static void main(String[] args) throws InterruptedException {
+            Count c = new Count();
+            Runnable obj1 = () -> {
+                for (int i = 0; i < 1000; i++) {
+                    c.increment();
+                }
+
+            };
+
+            Runnable obj2 = () -> {
+                for (int i = 0; i < 1000; i++) {
+                    c.increment();
+                }
+            };
+            Thread t1 = new Thread(obj1);
+            Thread t2 = new Thread(obj2);
+            t1.start();
+            t2.start();
+
+            /*If we don't mention this, the main thread will execute the println statement first
+            as it is free, we are asking main thread to wait while t1,t2 finish*/
+            t1.join();
+            t2.join();
+
+            System.out.println(c.counter);
+
+        }
+    }
 
 
 
