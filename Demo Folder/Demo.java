@@ -1,20 +1,16 @@
-@FunctionalInterface
-interface A {
-	public int show(int x, int y);
-}
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 class Demo {
-	public static void main(String[] args) {
-		A obj = (x, y) -> x + y;
+	public static void main(String[] args) throws IOException {
+		InputStreamReader in = new InputStreamReader(System.in);
+		BufferedReader bf = new BufferedReader(in);
+		int num = Integer.parseInt(bf.readLine());
+		System.out.println(num);
 
-
-		// A obj = new A() {
-		// 	public int show(int x, int y) {
-		// 		return x + y;
-		// 	}
-		// };
-		obj.show(5, 6);
+		bf.close();//closing the resource
 	}
-
 }
+
+

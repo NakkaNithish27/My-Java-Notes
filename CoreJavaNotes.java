@@ -1153,6 +1153,188 @@ class Demo {
 
     }
 
+    /*Types of Interfaces*/
+
+    /*Normal interface - two or more abstract methods
+     Functinal interface -  only one abstract method
+     Marker interface - Blank interface to update/give permission to the compiler
+      */
+
+    /*After java 8, we got option of defining methods in interface*/
+
+    /*Serialization -  saving the state of the object in hard disk
+    De-serialization - restoring the object
+
+    By default every object is not allow to do that, we have to give permision with the help
+    of marker interface*/
+
+
+
+    /*Exceptions*/
+
+    /*Types of errors
+
+    Compiletime errors - synctatical errors
+    Runtime errors - In runtime errors the execution will stop in between
+    Logical errors - errors in our logic
+    */
+
+    /*Runtime errors are also called exceptions , and we need to handle those exceptions*/
+
+    /*Statements can be normal statements or critical statements*/
+
+    /*ArithmaticeException -> RuntimeException -> Exception -> Throwable*/
+
+    /*All names ends with able are interfaces, but Throwable only is a class*/
+
+    /*Search for types of exceptions hierarchy*/
+
+    class Demo {
+        public static void main(String[] args) {
+            int i = 1;
+            int j = 0;
+            int arr[] = new int[5];
+            String str = null;
+
+            try {
+                j = 18 / i;   //We put critical statements in try block
+                System.out.println(str.length());
+                System.out.println(arr[5]);
+
+            } catch (ArithmeticException e) {
+                System.out.println("cannot divide by zero");
+
+            } catch (ArrayIndexOutOfBoundsException e) {
+
+                System.out.println("Array index limit reached");
+            } catch (Exception e) {
+                System.out.println("Something went wrong" + e);
+            }
+        }
+    }
+
+    /*Even if there is no exception we can call the catch block using throw keyword and creating
+    the object of the exception */
+
+
+    class Demo {
+        public static void main(String[] args) {
+            int i = 2;
+            int j = 0;
+
+            try {
+                j = 18 / i; //here this won't raises exception
+                if (i > 0) {
+                    throw new ArithmeticException("my custom message");
+                }
+
+            } catch (ArithmeticException e) {
+                System.out.println("cannot divide by zero" + e);//here no only printing message, we can also write code
+
+            } catch (Exception e) {
+                System.out.println("Something went wrong" + e);
+            }
+        }
+    }
+
+    /*We can also create our own exception*/
+
+    class NithishException extends Exception {
+        public NithishException(String str) {
+            super(str); //we need to pass the message to super class constuctor
+        }
+    }
+
+    class Demo {
+        public static void main(String[] args) {
+            int i = 2;
+            int j = 0;
+
+            try {
+                j = 18 / i; //here this won't raises exception
+                if (i > 0) {
+                    throw new NithishException("my custom message");
+                }
+
+            } catch (NithishException e) {
+                System.out.println("Nithish exception occured " + e);
+
+            } catch (Exception e) {
+                System.out.println("Something went wrong" + e);
+            }
+        }
+    }
+
+    /*throws keyword*/
+
+    /*we can duck the exception using throws keyword*/
+
+    /*if a method throws an exception instead of handling the exception using try catch blocks
+    ,we can duck the exception using throws keyword, so that the next method that calls the
+     method will have to handle the exception*/
+
+    /*For unchecked exceptions,it's not compulsion for us to handle the exception
+    But for checked exception ex: IOexception , it is compulsory to handle it*/
+
+    class A {
+        public void show() throws ClassNotFoundException {
+            /*here instead of handling, we are ducking the exception so that it has to be handled
+            by the next method that calls it, which is main method*/
+            Class.forName("Calc");
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            A obj = new A();
+
+            try {
+                obj.show();
+
+            } catch (ClassNotFoundException e) {
+                System.out.println("Calc class in not foung" + e);
+                e.printStackTrace();
+
+            }
+        }
+    }
+
+
+    /*How to take input from the user*/
+
+    /*out is the object of print stream which is created as a static variable inside System class*/
+
+    //import java.io.IOException;
+
+    class Demo {
+        public static void main(String[] args) throws IOException {
+            int num = System.in.read();  //this returns Ascii value
+            System.out.println(num - 48);
+        }
+    }
+    /*Taking input using BufferedReader*/
+
+    // import java.io.BufferedReader;
+    // import java.io.IOException;
+    // import java.io.InputStreamReader;
+
+    class Demo {
+        public static void main(String[] args) throws IOException {
+            InputStreamReader in = new InputStreamReader(System.in);
+            BufferedReader bf = new BufferedReader(in);
+            int num = Integer.parseInt(bf.readLine());
+            System.out.println(num);
+
+            bf.close(); //closing the resource
+        }
+    }
+
+
+
+
+
+
+
+
 
 
 
