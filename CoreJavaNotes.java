@@ -1523,20 +1523,214 @@ class Demo {
     }
 
 
+    /*Thread States */
+    /*New
+    Runnable
+    Running
+    Waiting
+    Dead*/
+
+
+    /*Collections in Java*/
+
+    /*Collection API -  concept using which we can implement various data structures
+    Collection - interface
+    Collections - Class
+    */
+
+    /*Collection -  interface
+
+        List - interface
+            ArrayList - Class that implements List
+            LinkedList - Class that implements List
+
+        Queue - interface
+            DeQueue - Class that implements Queue
+
+        Set - interface
+            HashSet - Class that implements Set
+            LinkedHashSet - Class that implementsSet
+    */
+
+    /*By default Collection works with the object type, if we want to store specific datatype we need to mention it in
+    with the help of genrics i.e <>*/
+
+
+//Without generic the collection interface works with Object type
+    /*Collection dont support index valus*/
+    /*ArrayList implements List, with supports index values*/
+    /*List also supports duplicate values*/
+    /* Set won't support duplicate values, elements are not stored in order*/
+    /*Collection extens another interface called Iterable, in which we have iterator() method*/
+
+    import java.util.ArrayList;
+    import java.util.Collection;
+    import java.util.HashSet;
+    import java.util.Iterator;
+    import java.util.List;
+    import java.util.Set;
+    import java.util.TreeSet;
+
+
+    class Demo {
+        public static void main(String[] args) {
+
+
+            // Collection <Integer> nums = new ArrayList<Integer>();
+            //If we specify generic on lefthand side, it is not mandatory to specify it on righthand side
+            List<Integer> nums = new ArrayList<Integer>();
+            Set<Integer> s = new HashSet<Integer>();
+            Set<Integer> s1 = new TreeSet<Integer>(); //stores elements in sorted format
+            nums.add(3);
+            nums.add(5);
+            nums.add(9);
+            nums.add(2);
+
+            Iterator<Integer> it = nums.iterator(); //iterator() method gives Iterator object
+
+            while (it.hasNext())
+                System.out.println(it.next());
+
+            System.out.println(nums.get(1));
+
+            for (int num : nums) {
+                System.out.println(num);
+            }
+
+
+        }
+    }
+
+    /*Map is an interface,  it donesnot extend Collection interface, but it is a part of Collection Api*/
+    /*Map is a collection of key value pair*/
+
+    /*Map - interface
+        HashMap - Class that implements Map
+        Hashtable - it is synchronized
+    */
+
+    import java.util.HashMap;
+    import java.util.Map;
+
+    class Demo {
+        public static void main(String[] args) {
+            Map <String, Integer> students = new HashMap<>();
+            students.put("Nithish", 100);
+            students.put("Phani", 84);
+            students.put("Harsh", 49);
+            students.put("Navin", 92);
+
+            for (String key : students.keySet()) {
+                System.out.println(key + " : " + students.get(key));
+            }
+            System.out.println(students.values());
+
+        }
+    }
 
 
 
+    /*How to sort a collection*/
+
+    /*We can sort the values in a collection based on our own logic using Comparator object*/
+
+    import java.util.ArrayList;
+    import java.util.Collection;
+    import java.util.Collections;
+    import java.util.Comparator;
+    import java.util.List;
+
+    class Demo {
+        public static void main(String[] args) {
+            List<Integer> nums = new ArrayList<>();
+            Comparator<Integer> com = new Comparator<Integer>() {
+
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    /*Swapping based on unit digit number*/
+                    if (o1 % 10 > o2 % 10)
+                        return 1;  //swap
+                    else
+                        return -1;  //don't swap
+                }
+            };
+            nums.add(83);
+            nums.add(92);
+            nums.add(96);
+            nums.add(72);
+            nums.add(27);
+            /*In Collections class we have various methods we can use*/
+            Collections.sort(nums);
+            System.out.println(nums);
+            Collections.sort(nums, com);
+            System.out.println(nums);
+
+        }
+    }
 
 
 
+    /*In above example sorting is working for Integer collection as by default Integer implements Comparable
+    interface*/
+    /*So if we create our own class, lets say Student, and we have created a students collection, we can
+    sort our students either by using Comparator object or by implementing Comparable interface in our
+    Student class*/
 
+    import java.util.ArrayList;
+    import java.util.Collections;
+    import java.util.Comparator;
+    import java.util.List;
 
+    class Student implements Comparable<Student> {
+        int age ;
+        String name;
+        public Student(int age, String name) {
+            this.age = age;
+            this.name = name;
+        }
+        @Override
+        public String toString() {
+            // TODO Auto-generated method stub
+            return this.name + " : " + this.age;
+        }
+        @Override
+        public int compareTo(Student that) {
+            /*Swapping based on age*/
+            if (this.age > that.age)
+                return 1;  //swap
+            else
+                return -1;  //don't swap
+        }
+    }
+    class Demo {
+        public static void main(String[] args) {
+            List <Student> studs = new ArrayList<>();
 
+            /*As Comparator is functional interface, we can reduce this code using lamda expression*/
+            Comparator<Student> com = new Comparator<Student>() {
 
+                @Override
+                public int compare(Student o1, Student o2) {
+                    /*Swapping based on age*/
+                    if (o1.age > o2.age)
+                        return 1;  //swap
+                    else
+                        return -1;  //don't swap
+                }
+            };
+            studs.add(new Student(21, "Nithish"));
+            studs.add(new Student(23, "Phani"));
+            studs.add(new Student(43, "Suresh"));
+            studs.add(new Student(26, "Rajesh"));
+            studs.add(new Student(24, "Satish"));
 
+            // Collections.sort(studs, com);
+            Collections.sort(studs);
 
+            System.out.println(studs);
 
-
+        }
+    }
 
 
 

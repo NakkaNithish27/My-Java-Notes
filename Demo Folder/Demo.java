@@ -1,37 +1,58 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-class Count {
-	int counter;
-	public synchronized void increment() {
-		counter++;
+class Student implements Comparable<Student> {
+	int age ;
+	String name;
+	public Student(int age, String name) {
+		this.age = age;
+		this.name = name;
+	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.name + " : " + this.age;
+	}
+	@Override
+	public int compareTo(Student that) {
+		/*Swapping based on age*/
+		if (this.age > that.age)
+			return 1;  //swap
+		else
+			return -1;  //don't swap
 	}
 }
-
 class Demo {
-	public static void main(String[] args) throws InterruptedException {
-		Count c = new Count();
-		Runnable obj1 = () -> {
-			for (int i = 0; i < 1000; i++) {
-				c.increment();
+	public static void main(String[] args) {
+		List <Student> studs = new ArrayList<>();
+
+
+		Comparator<Student> com = new Comparator<Student>() {
+
+			@Override
+			public int compare(Student o1, Student o2) {
+				/*Swapping based on age*/
+				if (o1.age > o2.age)
+					return 1;  //swap
+				else
+					return -1;  //don't swap
 			}
-
 		};
+		studs.add(new Student(21, "Nithish"));
+		studs.add(new Student(23, "Phani"));
+		studs.add(new Student(43, "Suresh"));
+		studs.add(new Student(26, "Rajesh"));
+		studs.add(new Student(24, "Satish"));
 
-		Runnable obj2 = () -> {
-			for (int i = 0; i < 1000; i++) {
-				c.increment();
-			}
-		};
-		Thread t1 = new Thread(obj1);
-		Thread t2 = new Thread(obj2);
-		t1.start();
-		t2.start();
+// Collections.sort(studs, com);
+		Collections.sort(studs);
 
-		/*If we don't mention this, the main thread will execute the println statement first
-		as it is free, we are asking main thread to wait while t1,t2 finish*/
-		t1.join();
-		t2.join();
-
-		System.out.println(c.counter);
+		System.out.println(studs);
 
 	}
 }
+
+
+
