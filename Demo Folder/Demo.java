@@ -1,55 +1,29 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.Arrays;
 
-class Student implements Comparable<Student> {
-	int age ;
-	String name;
-	public Student(int age, String name) {
-		this.age = age;
-		this.name = name;
-	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return this.name + " : " + this.age;
-	}
-	@Override
-	public int compareTo(Student that) {
-		/*Swapping based on age*/
-		if (this.age > that.age)
-			return 1;  //swap
-		else
-			return -1;  //don't swap
-	}
-}
 class Demo {
 	public static void main(String[] args) {
-		List <Student> studs = new ArrayList<>();
+		List <Integer> nums = Arrays.asList(4, 7, 8, 3, 9, 2);
+		int result = nums.stream()
+		             .filter(n -> n % 2 == 0)  //takes object of Predicate interface
+		             .map(n->n * 2) //takes object of Function interface
+		             .reduce(0, (c, e)->c + e); /*0 is the intitial value, c is carry and e is the element*/
+		System.out.println(result);
 
+		/*To get sorted values*/
+		Stream<Integer> sortedValues = nums.stream()
+		                               .filter(n -> n % 2 == 0)
+		                               .map(n->n * 2)
+		                               .sorted();
+		sortedValues.forEach(n-> System.out.print(n));
+		System.out.println();
 
-		Comparator<Student> com = new Comparator<Student>() {
-
-			@Override
-			public int compare(Student o1, Student o2) {
-				/*Swapping based on age*/
-				if (o1.age > o2.age)
-					return 1;  //swap
-				else
-					return -1;  //don't swap
-			}
-		};
-		studs.add(new Student(21, "Nithish"));
-		studs.add(new Student(23, "Phani"));
-		studs.add(new Student(43, "Suresh"));
-		studs.add(new Student(26, "Rajesh"));
-		studs.add(new Student(24, "Satish"));
-
-// Collections.sort(studs, com);
-		Collections.sort(studs);
-
-		System.out.println(studs);
+		/*What if want to do filtering with multiple threads, we can use parallelStream*/
+		/*use only if you want to filter, don't use parallel stream if you want to sort the stream values*/
+		Stream<Integer> ps = nums.parallelStream()
+		                     .filter(n->n % 2 == 0);
+		ps.forEach(e->System.out.print(e));
 
 	}
 }
