@@ -891,9 +891,10 @@ public static void main(String[] args) {
 	obj.playMusic();
 }
 }
+```
+### Inner Class
 
-/*Inner Class*/
-
+```java
 class A {
 int name = "Nithish";
 public void show() {
@@ -920,8 +921,11 @@ public static void main(String[] args) {
 }
 /*We can only use static for inner class, not for outer class*/
 
-/*Anonymous Inner class*/
+```
 
+### Anonymous Inner class
+
+```java
 /*If we want to extend a class just to override a method, instead of creating a new
 class, we can use anonymous inner class*/
 
